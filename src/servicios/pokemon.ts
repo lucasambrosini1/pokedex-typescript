@@ -1,8 +1,4 @@
-/**
- * @typedef {import('../entidades/pokemon').default} Pokemon
- * @typedef {import('../entidades/listadoPokemones').default} ListadoPokemones
- */
-
+import  ListadoPokemones  from '../entidades/listadoPokemones';
 import {
   cargarPokemon as cargarPokemonDeApi,
   cargarPokemones as cargarPokemonesDeApi,
@@ -45,7 +41,7 @@ export async function cargarPokemon(id) {
  * @param {String} limite
  * @return {ListadoPokemones}
  */
-export async function cargarPokemones(offset = 0, limite = LIMITE_POKEMONES) {
+export async function cargarPokemones(offset : number = 0, limite : number = LIMITE_POKEMONES) : Promise<ListadoPokemones> {
   try {
     return cargarPokemonesDeLocalStorage(offset, limite);
   } catch (e) {

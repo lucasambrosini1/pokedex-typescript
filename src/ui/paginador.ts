@@ -1,4 +1,4 @@
-function crearItemPaginador(texto, url = '#') {
+function crearItemPaginador(texto : string , url : string = '#') : HTMLLIElement{
   const $item = document.createElement('li');
   const $link = document.createElement('a');
   $item.className = 'page-item';
@@ -12,30 +12,30 @@ function crearItemPaginador(texto, url = '#') {
   return $item;
 }
 
-export function manejarCambioPagina(e, callbackPaginaSeleccionada = () => {}) {
+export function manejarCambioPagina(e : Event, callbackPaginaSeleccionada = (pagina: number | string) => {}) {
   e.preventDefault();
-  const { target } = e;
-  const href = target.getAttribute('href');
-  let numeroPagina;
-  const { pagina } = target.dataset;
+  const { target } = e as MouseEvent;
+  const href = (target as HTMLAnchorElement).getAttribute('href');
+  let numeroPagina: number;
+  const { pagina } = (target as HTMLElement).dataset;
   if (href === '#') {
     numeroPagina = Number(pagina);
     callbackPaginaSeleccionada(numeroPagina);
   } else {
-    callbackPaginaSeleccionada(href);
+    callbackPaginaSeleccionada(href!);
   }
 }
 
 export default function mostrarPaginador(
-  totalPokemones,
-  paginaActual,
-  urlSiguiente,
-  urlAnterior,
-  callbackPaginaSeleccionada = () => {},
+  totalPokemones: number,
+  paginaActual: number,
+  urlSiguiente: string,
+  urlAnterior: string,
+  callbackPaginaSeleccionada = (pagina: number | string) :  void | Promise<void> => {},
 ) {
   const POKEMONES_POR_PAGINA = 20;
-  const $paginador = document.querySelector('#paginador');
-  $paginador.innerHTML = '';
+  const $paginador : HTMLElement = document.querySelector('#paginador')!;
+  $paginador!.innerHTML = '';
 
   const totalPaginas = Math.ceil(totalPokemones / POKEMONES_POR_PAGINA);
 
@@ -46,15 +46,15 @@ export default function mostrarPaginador(
   } else {
     $paginaAnterior.classList.add('disabled');
   }
-  $paginador.appendChild($paginaAnterior);
+  $paginador!.appendChild($paginaAnterior);
 
   for (let i = 0; i < totalPaginas; i += 1) {
     const numeroPagina = i + 1;
-    const $pagina = crearItemPaginador(numeroPagina);
+    const $pagina = crearItemPaginador(numeroPagina.toString());
     if (numeroPagina === paginaActual) {
       $pagina.classList.add('active');
     }
-    $paginador.appendChild($pagina);
+    $paginador!.appendChild($pagina);
   }
 
   const $paginaSiguiente = crearItemPaginador('Siguiente', urlSiguiente);
@@ -63,9 +63,9 @@ export default function mostrarPaginador(
   } else {
     $paginaSiguiente.classList.add('disabled');
   }
-  $paginador.appendChild($paginaSiguiente);
+  $paginador!.appendChild($paginaSiguiente);
 
-  $paginador.onclick = (e) => {
+  $paginador!.onclick = (e) => {
     manejarCambioPagina(e, callbackPaginaSeleccionada);
   };
 }

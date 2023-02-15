@@ -5,20 +5,20 @@ import mostrarPaginador from './ui/paginador.js';
 import mostrarPokemon from './ui/pokemon.js';
 import obtenerParametrosDeURL from './utilidades/utilidades.js';
 
-async function cambiarPagina(pagina) {
+async function cambiarPagina(pagina: number | string) {
   const POKEMONES_POR_PAGINA = 20;
-  let paginaActual;
-  let offset;
+  let paginaActual: number;
+  let offset: number ;
   let limit = POKEMONES_POR_PAGINA;
 
-  if (typeof pagina === 'number') {
+  if (typeof pagina==="number") {
     offset = POKEMONES_POR_PAGINA * (pagina - 1);
     paginaActual = pagina;
   } else {
     const parametros = obtenerParametrosDeURL(pagina);
-    offset = parametros.offset;
-    limit = parametros.limit;
-    paginaActual = Math.ceil(parametros.offset / parametros.limit) + 1;
+    offset = Number(parametros.offset!);
+    limit = Number(parametros.limit!);
+    paginaActual = Math.ceil(offset / limit) + 1;
   }
 
   actualizarTextoIndicePokemones('Cargando...');

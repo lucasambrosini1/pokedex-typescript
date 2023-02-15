@@ -2,11 +2,7 @@ import Pokemon from '../entidades/pokemon.js';
 import Movimiento from '../entidades/movimiento.js';
 import ListadoPokemones from '../entidades/listadoPokemones.js';
 
-/**
- * @param {Object} datosApi
- * @returns {Pokemon}
- */
-export function mapearPokemon(datosApi) {
+export function mapearPokemon(datosApi) : Pokemon {
   const {
     id,
     name: nombre,
@@ -29,11 +25,8 @@ export function mapearPokemon(datosApi) {
   );
 }
 
-/**
- * @param {Object} datosApi
- * @returns {ListadoPokemones}
- */
-export function mapearListadoPokemones(datosApi) {
+
+export function mapearListadoPokemones(datosApi) : ListadoPokemones {
   const {
     count: total,
     next: siguienteUrl,

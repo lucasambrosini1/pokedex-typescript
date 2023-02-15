@@ -1,30 +1,29 @@
-/**
- * @typedef {import('../entidades/pokemon').default} Pokemon
- */
 
+import Movimiento from '../entidades/movimiento.js';
+import Pokemon from '../entidades/pokemon.js';
 import { actualizarTextoAyuda } from './general.js';
 
-function mostrarTipos(tipos) {
+function mostrarTipos(tipos : string[]) {
   const $tipos = document.querySelector('#tipos');
-  $tipos.innerHTML = '';
+  $tipos!.innerHTML = '';
 
   tipos.forEach((tipo) => {
     const $tipo = document.createElement('span');
     $tipo.className = `badge ${tipo} type`;
     $tipo.textContent = tipo;
-    $tipos.appendChild($tipo);
+    $tipos!.appendChild($tipo);
   });
 }
 
-function mostrarMovimientos(movimientos) {
+function mostrarMovimientos(movimientos: Movimiento[]) {
   const $movimientos = document.querySelector('#movimientos');
 
   movimientos.forEach((movimiento) => {
-    const { movimiento: nombreMovimiento, versiones } = movimiento;
+    const { nombre, versiones } = movimiento;
     const $movimientoFila = document.createElement('tr');
     const $movimiento = document.createElement('th');
     $movimiento.setAttribute('scope', 'row');
-    $movimiento.textContent = nombreMovimiento;
+    $movimiento.textContent = nombre;
     $movimientoFila.appendChild($movimiento);
 
     const $versiones = document.createElement('td');
@@ -37,26 +36,23 @@ function mostrarMovimientos(movimientos) {
     });
 
     $movimientoFila.appendChild($versiones);
-    $movimientos.appendChild($movimientoFila);
+    $movimientos!.appendChild($movimientoFila);
   });
 }
 
-function mostrarHabilidades(habilidades) {
+function mostrarHabilidades(habilidades : string[]) {
   const $habilidades = document.querySelector('#habilidades');
-  $habilidades.innerHTML = '';
+  $habilidades!.innerHTML = '';
   habilidades.forEach((habilidad) => {
     const $habilidad = document.createElement('span');
     $habilidad.className = 'badge';
     $habilidad.textContent = habilidad;
 
-    $habilidades.appendChild($habilidad);
+    $habilidades!.appendChild($habilidad);
   });
 }
 
-/**
- * @param {Pokemon} pokemon
- */
-export default function mostrarPokemon(pokemon) {
+export default function mostrarPokemon(pokemon : Pokemon) {
   const {
     id,
     nombre,
@@ -66,15 +62,20 @@ export default function mostrarPokemon(pokemon) {
     movimientos,
   } = pokemon;
 
-  document.querySelector('#pokemon-contenedor').style.display = 'block';
+  const $pokemonContenedor : HTMLElement= document.querySelector('#pokemon-contenedor')!;
+
+  $pokemonContenedor.style!.display = 'block';
   actualizarTextoAyuda('');
 
-  const $imagen = document.querySelector('#pokemon-imagen');
+  const $imagen : HTMLImageElement = document.querySelector('#pokemon-imagen')!;
   $imagen.setAttribute('src', foto);
   $imagen.setAttribute('alt', `Imagen frontal del pokemon ${nombre}`);
 
-  document.querySelector('#pokemon-nombre').textContent = nombre;
-  document.querySelector('#pokemon-id').textContent = id;
+  const $pokemonNombre = document.querySelector('#pokemon-nombre');
+  $pokemonNombre!.textContent = nombre;
+
+  const $pokemonId : HTMLElement = document.querySelector('#pokemon-id')!;
+  $pokemonId.textContent = id.toString();
 
   mostrarTipos(tipos);
   mostrarHabilidades(habilidades);
