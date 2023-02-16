@@ -1,4 +1,8 @@
-import  ListadoPokemones  from '../entidades/listadoPokemones';
+/**
+ * @typedef {import('../entidades/pokemon').default} Pokemon
+ * @typedef {import('../entidades/listadoPokemones').default} ListadoPokemones
+ */
+
 import {
   cargarPokemon as cargarPokemonDeApi,
   cargarPokemones as cargarPokemonesDeApi,
@@ -18,7 +22,7 @@ export const LIMITE_POKEMONES = 20;
  * @param {String} id
  * @returns {Pokemon}
  */
-export async function cargarPokemon(id) {
+export async function cargarPokemon(id : string) {
   if (id === undefined) {
     throw new Error('Se necesita un identificador para cargar un pokemón');
   }
@@ -41,7 +45,7 @@ export async function cargarPokemon(id) {
  * @param {String} limite
  * @return {ListadoPokemones}
  */
-export async function cargarPokemones(offset : number = 0, limite : number = LIMITE_POKEMONES) : Promise<ListadoPokemones> {
+export async function cargarPokemones(offset : number = 0, limite : number = LIMITE_POKEMONES) {
   try {
     return cargarPokemonesDeLocalStorage(offset, limite);
   } catch (e) {

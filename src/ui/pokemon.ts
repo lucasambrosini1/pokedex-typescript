@@ -62,7 +62,7 @@ export default function mostrarPokemon(pokemon : Pokemon) {
     movimientos,
   } = pokemon;
 
-  const $pokemonContenedor : HTMLElement= document.querySelector('#pokemon-contenedor')!;
+  const $pokemonContenedor : HTMLElement = document.querySelector('#pokemon-contenedor')!;
 
   $pokemonContenedor.style!.display = 'block';
   actualizarTextoAyuda('');

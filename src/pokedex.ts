@@ -8,10 +8,10 @@ import obtenerParametrosDeURL from './utilidades/utilidades.js';
 async function cambiarPagina(pagina: number | string) {
   const POKEMONES_POR_PAGINA = 20;
   let paginaActual: number;
-  let offset: number ;
+  let offset: number;
   let limit = POKEMONES_POR_PAGINA;
 
-  if (typeof pagina==="number") {
+  if (typeof pagina === 'number') {
     offset = POKEMONES_POR_PAGINA * (pagina - 1);
     paginaActual = pagina;
   } else {

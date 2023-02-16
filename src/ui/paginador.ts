@@ -1,4 +1,4 @@
-function crearItemPaginador(texto : string , url : string = '#') : HTMLLIElement{
+function crearItemPaginador(texto : string, url : string = '#') : HTMLLIElement {
   const $item = document.createElement('li');
   const $link = document.createElement('a');
   $item.className = 'page-item';
@@ -31,7 +31,7 @@ export default function mostrarPaginador(
   paginaActual: number,
   urlSiguiente: string,
   urlAnterior: string,
-  callbackPaginaSeleccionada = (pagina: number | string) :  void | Promise<void> => {},
+  callbackPaginaSeleccionada = (pagina: number | string) : void | Promise<void> => {},
 ) {
   const POKEMONES_POR_PAGINA = 20;
   const $paginador : HTMLElement = document.querySelector('#paginador')!;

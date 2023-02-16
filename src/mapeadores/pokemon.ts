@@ -2,7 +2,23 @@ import Pokemon from '../entidades/pokemon.js';
 import Movimiento from '../entidades/movimiento.js';
 import ListadoPokemones from '../entidades/listadoPokemones.js';
 
-export function mapearPokemon(datosApi) : Pokemon {
+interface IApiPokemon {
+  id : number;
+  name : string;
+  sprites : { front_default : string };
+  types : { type : { name : string } }[];
+  abilities : { ability : { name : string } }[];
+  moves : { move : { name : string }, version_group_details : { version_group : { name : string } }[] }[];
+}
+
+interface IApiListadoPokemones {
+  count : number;
+  next : string;
+  previous : string;
+  results : { name : string }[];
+}
+
+export function mapearPokemon(datosApi : IApiPokemon) : Pokemon {
   const {
     id,
     name: nombre,
@@ -25,8 +41,7 @@ export function mapearPokemon(datosApi) : Pokemon {
   );
 }
 
-
-export function mapearListadoPokemones(datosApi) : ListadoPokemones {
+export function mapearListadoPokemones(datosApi: IApiListadoPokemones) : ListadoPokemones {
   const {
     count: total,
     next: siguienteUrl,

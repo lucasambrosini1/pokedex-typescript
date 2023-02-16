@@ -1,6 +1,6 @@
-import  Movimiento  from './movimiento';
+import Movimiento from './movimiento';
 
-interface IPokemon { 
+interface IPokemon {
   id : number;
   nombre : string;
   foto : string;
