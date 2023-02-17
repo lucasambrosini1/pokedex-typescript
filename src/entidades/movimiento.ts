@@ -1,4 +1,4 @@
-interface IMovimiento { 
+interface IMovimiento {
   nombre : string;
   versiones : string[];
 }

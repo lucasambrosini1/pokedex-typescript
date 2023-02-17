@@ -15,8 +15,8 @@ describe('utilidades', () => {
   it('deberia obtener los parametros por default de la url', () => {
     expect(obtenerParametrosDeURL('http://asd.com/'))
       .toEqual({
-        offset: undefined,
-        limit: undefined,
+        offset: '',
+        limit: '',
       });
   });
 

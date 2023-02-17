@@ -1,5 +1,5 @@
-import ListadoPokemones from "../entidades/listadoPokemones";
-import Pokemon from "../entidades/pokemon";
+import ListadoPokemones from '../entidades/listadoPokemones';
+import Pokemon from '../entidades/pokemon';
 
 export const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
 export const LIMITE_POKEMONES = 20;
