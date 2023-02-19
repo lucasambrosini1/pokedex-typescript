@@ -2,7 +2,7 @@
 /// <reference types="Cypress" />
 
 describe('Pokedex', () => {
-  let fetchPolyfill;
+  let fetchPolyfill : Cypress.Response;
 
   before(() => {
     const polyfillUrl = 'https://unpkg.com/unfetch/dist/unfetch.umd.js';
@@ -17,11 +17,9 @@ describe('Pokedex', () => {
       .as('obtenerPrimeraPagina');
 
     cy.visit('http://127.0.0.1:8080', {
-      onBeforeLoad(contentWindow) {
-        // eslint-disable-next-line no-param-reassign
+      onBeforeLoad(contentWindow: Window) {
         delete contentWindow.fetch;
         contentWindow.eval(fetchPolyfill);
-        // eslint-disable-next-line no-param-reassign
         contentWindow.fetch = contentWindow.unfetch;
       },
     });

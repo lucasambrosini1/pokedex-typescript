@@ -2,7 +2,6 @@ import inicializar from '../pokedex.js';
 import fixture from './pokedex.fixture.js';
 import listadoFixture from '../../cypress/fixtures/listado-pagina-1.json';
 
-
 test('inicializa pokedex', () => {
   document.body.innerHTML = fixture;
   global.fetch = jest.fn()

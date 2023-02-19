@@ -2,7 +2,7 @@ import Pokemon from '../entidades/pokemon.js';
 import Movimiento from '../entidades/movimiento.js';
 import ListadoPokemones from '../entidades/listadoPokemones.js';
 
-interface IApiPokemon {
+export interface IApiPokemon {
   id : number;
   name : string;
   sprites : { front_default : string };
@@ -11,7 +11,7 @@ interface IApiPokemon {
   moves : { move : { name : string }, version_group_details : { version_group : { name : string } }[] }[];
 }
 
-interface IApiListadoPokemones {
+export interface IApiListadoPokemones {
   count : number;
   next : string;
   previous : string;

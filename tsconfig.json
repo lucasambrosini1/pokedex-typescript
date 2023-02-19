@@ -2,6 +2,7 @@
     "compilerOptions": {
       "module": "ES6",
       "moduleResolution": "node",
+      "resolveJsonModule": true,
       "declaration": true,
       "removeComments": true,
       "emitDecoratorMetadata": true,
@@ -21,5 +22,12 @@
     ],
     "include": [
       "./src"
-    ]
+, "gulpfile.js"    ],
+"ts-node":   {
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "sourceMap": true
+  }
+}
   }
