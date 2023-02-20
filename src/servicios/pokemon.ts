@@ -1,3 +1,5 @@
+import Pokemon from 'src/entidades/pokemon.js';
+import ListadoPokemones from 'src/entidades/listadoPokemones.js';
 import {
   cargarPokemon as cargarPokemonDeApi,
   cargarPokemones as cargarPokemonesDeApi,
@@ -13,12 +15,12 @@ import { mapearListadoPokemones, mapearPokemon } from '../mapeadores/pokemon.js'
 
 export const LIMITE_POKEMONES = 20;
 
-export async function cargarPokemon(id : string) {
+export async function cargarPokemon(id : string) : Promise<Pokemon> {
   if (id === undefined) {
     throw new Error('Se necesita un identificador para cargar un pokemón');
   }
 
-  let pokemon;
+  let pokemon : Pokemon;
 
   try {
     pokemon = cargarPokemonDeLocalStorage(id);
@@ -31,7 +33,7 @@ export async function cargarPokemon(id : string) {
   return pokemon;
 }
 
-export async function cargarPokemones(offset : number = 0, limite : number = LIMITE_POKEMONES) {
+export async function cargarPokemones(offset : number = 0, limite : number = LIMITE_POKEMONES) : Promise<ListadoPokemones> {
   try {
     return cargarPokemonesDeLocalStorage(offset, limite);
   } catch (e) {
