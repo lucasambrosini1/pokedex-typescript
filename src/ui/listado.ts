@@ -5,7 +5,7 @@ export function actualizarTextoIndicePokemones(texto: string) {
 }
 
 
-export function mostrarListadoPokemones(nombresPokemones: string[], pokemonSeleccionadoCallback = (arg : string) => {}) {
+export function mostrarListadoPokemones(nombresPokemones: string[], pokemonSeleccionadoCallback: (nombre: string) => Promise<void>) {
   const $indice = document.querySelector('#indice');
   $indice!.innerHTML = '';
 

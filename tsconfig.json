@@ -22,7 +22,7 @@
     ],
     "include": [
       "./src"
-, "gulpfile.js"    ],
+, "gulpfile.ts"    ],
 "ts-node":   {
   "compilerOptions": {
     "module": "commonjs",
