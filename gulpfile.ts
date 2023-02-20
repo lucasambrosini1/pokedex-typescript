@@ -63,6 +63,7 @@ const startServer = () => gulp.src('public')
     open: false,
   }));
 
+exports.cleanDist = cleanDist;
 exports.compileTypescript = compileTypescript;
 exports.minifyCss = minifyCss;
 exports.minifyHtml = minifyHtml;
